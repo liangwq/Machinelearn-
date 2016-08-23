@@ -1,0 +1,100 @@
+第一讲python基础代码：
+  python数据切片
+  python矩阵操作
+  python广播
+  python基本numpy应用
+第二讲python高级与可视化代码：
+  python读取cvs文件
+  panadas查看一列数据
+  matplotlib画图（.plot)
+  数据初探(pandas .value_counts())
+  panadas条件筛选列：
+     is_noise = complaints['Complaint Type'] == "Noise - Street/Sidewalk"
+     in_brooklyn = complaints['Borough'] == "BROOKLYN"
+     complaints[is_noise & in_brooklyn][:5]
+  pandas中日期中day、weelday：
+     berri_bikes.index.day
+     berri_bikes.index.weekday
+  pandas中对数据分组求和：
+     berri_bikes.groupby('weekday').aggregate(sum)
+  pandas中对数据的基础统计分析函数：resample
+     is_snowing.astype(float).resample('M', how=np.mean).plot(kind='bar')
+  pandas中数据清洗：
+     na_values = ['NO CLUE', 'N/A', '0']
+     requests = pd.read_csv('311-service-requests.csv', 
+                        na_values=na_values, 
+                        dtype={'Incident Zip': str})
+	 zips = zips.str.slice(0, 5)
+    # Set 00000 zip codes to nan
+    zero_zips = zips == '00000'
+    zips[zero_zips] = np.nan
+  Seaborn可视化画图：
+     sns.factorplot("cylinders",data=df, col="origin",kind='count')
+	 g = sns.FacetGrid(df, col="origin")
+     g.map(sns.distplot, "mpg")
+     g = sns.pairplot(df[["mpg", "horsepower", "weight", "origin"]], hue="origin", diag_kind="hist")
+     for ax in g.axes.flat:
+         plt.setp(ax.get_xticklabels(), rotation=45)
+		 
+	 sns.jointplot("mpg", "horsepower", data=df, kind='kde')
+第三讲分布式运算代码：
+    分布式框架mapreduce
+第四讲关联规则代码：
+    apirior算法：
+	1）先遍历一遍篮子，把所有商品和出现在多少篮子次数统计
+	2）利用最小频繁集去除大部分非频繁集
+	3）得到的合理频繁集自交产生备选二项集
+	4）遍历购物篮子 ，统计以上产生合理二项集出现次数
+	5）利用最小频繁集去除大部分非频繁集
+	6）重复3-5步骤知道达到最长购物篮
+	FP-Growth：
+	1）遍历一遍篮子，统计商品种类和出现次数，并按商品次数对商品排序，商品从高到底做表头
+	2）对每个购物篮按表头顺序对商品排序
+	3）遍历购物篮建立频繁子集树
+第五讲聚类与社区发现代码：
+    基于划分：
+	kmean
+	kemean++
+	基于密度：
+	DBSCAN
+	基于层次：
+	
+	基于网格：
+	
+    社区聚类方法：
+	GN
+	LPA
+	图算法
+第六海量高位最近邻表示讲：
+    ANN
+	KNN
+	LHS
+	KMEANS-TREE
+	KD-TREE
+	常用库：ANNOY  FLANN  KGRAPTH  NEARPY
+	Github：https://github.com/HanXiaoyang/image_retrieval https://github.com/AKSHAYUBHAT/VisualSearchServer
+    
+第七讲分类算法代码：
+	逻辑回归
+	svm
+	神经网络
+	github：https://github.com/HanXiaoyang/ML-examples/tree/master/logistic_regression   https://github.com/HanXiaoyang/SVM-ipython-tutorial
+	        https://github.com/HanXiaoyang/Neural-Network-Example
+	lr与svm的差别与优劣、
+	
+第八讲推荐系统代码：
+    基于内容
+	协同过滤
+	矩阵分解与隐语义分析
+	netflix：global effects+factorization+协同过滤
+	评价指标：准确度 召回率 覆盖率 多样性
+	距离:欧式距离 jaccard相似度  余弦相似度  pearson相似度
+	
+第九讲数据降维代码：
+    svd  稠稀稠
+	cur  稀稠稀
+	信息损失最小评判准则：min||A-svd（or cur）||、
+	
+第十讲PangeRank与图计算代码：
+    PageRank
+	两个库：networkx commutity
